@@ -287,3 +287,6 @@ footer .navbar-nav > li > a { display: inline-block; min-height: 24px; line-heig
 /* Its caption takes the whole width of the image: app.css left 16rem beside it for the navigation, which now sits on
    the image (cjw_jumper_page.js) */
 .related-multimedia.swiper-container .image-wrapper figcaption { max-width: none; }
+
+/* The breadcrumb: some room after the separator (>), a little less than before it (.4rem, the item's own padding) */
+.breadcrumb-wrapper ul .breadcrumb-item + .breadcrumb-item:before { padding-right: .3rem; }
