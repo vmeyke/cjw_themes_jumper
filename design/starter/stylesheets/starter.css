@@ -252,6 +252,24 @@ footer .navbar-nav > li > a { display: inline-block; min-height: 24px; line-heig
   .sushi-swiper .swiper-slide .vl4 .image { padding: 0 0 56.25%; }
 }
 
+/* The sushi bar shows its previous and next buttons only while the pointer is over it, the disabled one faint as
+   before (app.css); a touch screen shows them after a tap on the row. A clicked button keeps the focus, so only a
+   focus moved there by the keyboard (:focus-visible) shows them too; it has a rule of its own, which a browser
+   without :has() drops. Phones and tablets held upright (portrait, up to 1024px wide) swipe the row and show no
+   buttons at all. */
+.sushi-swiper > .swiper-button-prev,
+.sushi-swiper > .swiper-button-next { opacity: 0; visibility: hidden; transition: opacity .2s, visibility .2s; }
+.sushi-swiper:hover > .swiper-button-prev,
+.sushi-swiper:hover > .swiper-button-next { opacity: 1; visibility: visible; }
+.sushi-swiper:hover > .swiper-button-disabled { opacity: .35; }
+.sushi-swiper:has(:focus-visible) > .swiper-button-prev,
+.sushi-swiper:has(:focus-visible) > .swiper-button-next { opacity: 1; visibility: visible; }
+.sushi-swiper:has(:focus-visible) > .swiper-button-disabled { opacity: .35; }
+@media (orientation: portrait) and (max-width: 1024px) {
+  .sushi-swiper > .swiper-button-prev,
+  .sushi-swiper > .swiper-button-next { display: none; }
+}
+
 /* The slider's pagination (slick dots) sits above the slider's bottom line, not 25px below it (slick's place) */
 .ngl-gallery .slick-slider.has-dots { padding-bottom: 2.75rem; }
 .ngl-gallery .slick-slider.has-dots .slick-dots { bottom: 1rem; }
