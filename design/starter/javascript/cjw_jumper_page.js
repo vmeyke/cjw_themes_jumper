@@ -318,29 +318,6 @@ jQuery( function( $ ) {
     } );
 } );
 
-// The sushi bar: its previous and next buttons beside the row instead of over it, where the page leaves room for them
-// (starter.css, from 1250px wide). The row clips what leaves it (overflow: hidden), and nglayouts-standard.js finds the
-// buttons inside it only (#sushiSwiper-<n> .swiper-button-next): so after that script has started the swiper (its
-// own load handler comes first), the row and its two buttons move into a frame, whose class swiper-container keeps the
-// buttons' look. Swiper keeps its references to the buttons, so clicks and their disabled state go on working. A row
-// that fills the page (Wrap in container off) keeps them inside, as does a page without this script.
-window.addEventListener( 'load', function() {
-    Array.prototype.forEach.call( document.querySelectorAll( '.ngl-vt-sushi_bar .sushi-swiper' ), function( row ) {
-        var prev = row.querySelector( ':scope > .swiper-button-prev' );
-        var next = row.querySelector( ':scope > .swiper-button-next' );
-        if ( !row.swiper || !prev || !next || !row.parentElement || !row.parentElement.classList.contains( 'container' ) ) {
-            return;
-        }
-        var frame = document.createElement( 'div' );
-        frame.className = 'swiper-container sushi-bar-frame';
-        frame.setAttribute( 'data-slides-per-view', row.getAttribute( 'data-slides-per-view' ) || '6' );
-        row.parentElement.insertBefore( frame, row );
-        frame.appendChild( row );
-        frame.appendChild( prev );
-        frame.appendChild( next );
-    } );
-} );
-
 // The gallery of an article (content/parts/related_multimedia.tpl): its navigation (counter and buttons) sits on the
 // bottom of the image, not below a caption. The swiper takes the height of the slide shown (autoHeight), caption
 // included, and the navigation sits at the swiper's bottom; so it is lifted by what of the slide lies below the image,
